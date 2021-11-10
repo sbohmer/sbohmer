@@ -145,7 +145,7 @@ export async function setupCancelBid(
         cancelSigners,
       );
     } else {
-      receivingSolAccountOrAta = await findAta(auctionView, wallet, connection)
+      receivingSolAccountOrAta = await findAta(auctionView, wallet, connection);
     }
 
     await cancelBid(

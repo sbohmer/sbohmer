@@ -232,8 +232,14 @@ export const AuctionCard = ({
 
   const mintKey = auctionView.auction.info.tokenMint;
   const balance = useUserBalance(mintKey);
-  const tokenInfo = useTokenList().mainnetTokens.filter(m=>m.address == mintKey)[0]
-  const symbol = tokenInfo? tokenInfo.symbol: mintKey == WRAPPED_SOL_MINT.toBase58()? "SOL": "CUSTOM"
+  const tokenInfo = useTokenList().mainnetTokens.filter(
+    m => m.address == mintKey,
+  )[0];
+  const symbol = tokenInfo
+    ? tokenInfo.symbol
+    : mintKey == WRAPPED_SOL_MINT.toBase58()
+    ? 'SOL'
+    : 'CUSTOM';
 
   //console.log("[--P]AuctionCard", tokenInfo, mintKey)
   const myPayingAccount = balance.accounts[0];
@@ -259,7 +265,9 @@ export const AuctionCard = ({
   const gapTick = auctionExtended
     ? auctionExtended.info.gapTickSizePercentage
     : 0;
-  const tickSize = auctionExtended?.info?.tickSize ? auctionExtended.info.tickSize : 0;
+  const tickSize = auctionExtended?.info?.tickSize
+    ? auctionExtended.info.tickSize
+    : 0;
   const tickSizeInvalid = !!(
     tickSize &&
     value &&
@@ -540,7 +548,7 @@ export const AuctionCard = ({
             <div className="show-place-bid">
               <AmountLabel
                 title="in your wallet"
-                displaySymbol={tokenInfo?.symbol || "CUSTOM"}
+                displaySymbol={tokenInfo?.symbol || 'CUSTOM'}
                 style={{ marginBottom: 0 }}
                 amount={balance.balance}
                 tokenInfo={tokenInfo}
@@ -646,7 +654,11 @@ export const AuctionCard = ({
                         ? `◎ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
                         : ''
                     }
-                    placeholder={ minBid === 0 ? `Place a Bid` : `Bid ${minBid} ${symbol} or more` }
+                    placeholder={
+                      minBid === 0
+                        ? `Place a Bid`
+                        : `Bid ${minBid} ${symbol} or more`
+                    }
                   />
                 </div>
                 <div className={'bid-buttons'}>
